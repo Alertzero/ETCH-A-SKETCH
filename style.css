@@ -1,0 +1,13 @@
+.row{
+    display:flex;
+    justify-content:center;
+  }
+  
+  .row>*{
+   
+    height:600px ;
+    width:600px ;
+   
+    margin: 10px;
+  }
+  
