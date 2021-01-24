@@ -24,7 +24,7 @@
 
 
     <div class="row m-2">
-      <div class="bg-dark text-white"></div>
+      <div class="bg-dark text-white grid"></div>
     </div>
 
 
@@ -32,29 +32,15 @@
      
       <div class="d-table-cell text-center align-middle">
 
-        <div class="d-inline-block py-5 m-2 p-3" id ="player-score" style="width: 120px; background-color: rgba(0,0,255,.1); font-size: large;">
-          Your Score
+
+        <div class="m-5">
+          <h3>Controls</h3>
+          <div class="grid-size">8x8</div>
+          <input type="range" min="2" max="30" value="8" />
+          <button class="apply">Apply</button>
         </div>
 
-        <div class="d-inline-block py-5 m-2 p-3" id ="pc-score" style="width: 120px; background-color: rgba(0,0,255,.1); font-size: large;">
-          PC Score
-        </div>
-
-        <div class="d-table m-3 mx-auto">
-
-          <button class="d-inline-block py-5 m-4" id ="r" style="width: 120px; background-color: rgba(0,0,255,.1); border-radius: 20%; outline: none;">
-            Rock
-          </button>
-          <button class="d-inline-block py-5 m-4" id ="p" style="width: 120px; background-color: rgba(0,0,255,.1); border-radius: 20%; outline: none;">
-            Paper
-          </button>
-          <button class="d-inline-block py-5 m-4" id ="s" style="width: 120px; background-color: rgba(0,0,255,.1); border-radius: 20%; outline: none;">
-            Scissor
-          </button>
-
-        </div>
-
-        <button class="d-inline-block m-3 py-5 bg-danger text-white p-3" id ="reset" style="outline: none;">
+        <button class="d-inline-block m-3 py-5 bg-danger text-white p-3 reset" style="outline: none;">
           Reset Button
         </button>
 
