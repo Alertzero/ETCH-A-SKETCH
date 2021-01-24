@@ -1,62 +1,53 @@
-const grid = document.querySelector('.grid');
-let gridValue = document.querySelector('.grid-size');
-let gridSize = document.querySelector('input');
-const resetBtn = document.querySelector('.reset');
-const applyGridSize = document.querySelector('.apply');
-let squareSize = 8;
+const gridContainer = document.querySelector("#grid-container");
+const resetButton = document.querySelector("#reset-button");
 
-createGrid(squareSize);
+window.addEventListener("load", setDefaultGrid);
+resetButton.addEventListener("click", changeSize);
 
-// Create Squared Divs
-function createDiv(size) {
-  const div = document.createElement('div');
-  div.classList.add('box');
-  div.style.width = `${size}px`;
-  div.style.height = `${size}px`;
-
-  return div;
+function setDefaultGrid() {
+  setGridSize(16);
+  fillGrid(16);
 }
 
-// Creat The Grid and append it to grid
-function createGrid(gridSize) {
-  for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++) {
-      grid.appendChild(createDiv(grid.clientWidth / gridSize));
+function setGridSize(size) {
+  gridContainer.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+}
+
+function fillGrid(size) {
+  for (let i = 0; i < size * size; i++) {
+    const gridElement = document.createElement("div");
+    gridElement.classList = "grid-element";
+    gridElement.addEventListener("mouseover", changeColor);
+    gridContainer.appendChild(gridElement);
+  }
+}
+
+function changeColor(e) {
+  const randomR = Math.floor(Math.random() * 256);
+  const randomG = Math.floor(Math.random() * 256);
+  const randomB = Math.floor(Math.random() * 256);
+  e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
+}
+
+function changeSize() {
+  let newSize = prompt("Enter new size");
+
+  if (newSize !== null) {
+    newSize = parseInt(newSize);
+    if (newSize < 1 || newSize > 64 || Number.isNaN(newSize)) {
+      alert("Enter a number from 1-64 range");
+      changeSize();
+    } else {
+      clearGrid();
+      setGridSize(newSize);
+      fillGrid(newSize);
     }
   }
 }
 
-function reset() {
-  while (grid.firstChild) {
-    grid.removeChild(grid.lastChild);
-  }
-  createGrid(squareSize);
+function clearGrid() {
+  const gridArray = Array.from(gridContainer.childNodes);
+  gridArray.forEach((element) => {
+    gridContainer.removeChild(element);
+  });
 }
-
-
-
-
-// Used event delegation to target children of the grid
-grid.addEventListener('mouseover', function (e) {
-  // Add the "active" class to only divs with a "box" class
-
- 
-
-  if (e.target.matches('.box')) {
-    e.target.classList.add('active');
-  }
-
-
-
-});
-
-gridSize.addEventListener('input', function (e) {
-  squareSize = e.target.value;
-  gridValue.textContent = `${squareSize}x${squareSize}`;
-});
-
-applyGridSize.addEventListener('click', function () {
-  reset();
-});
-
-resetBtn.addEventListener('click', reset);
