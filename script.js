@@ -4,10 +4,7 @@ const changeButton = document.querySelector("#change-button");
 
 window.addEventListener("load", setDefaultGrid);
 changeButton.addEventListener("click", changeSize);
-resetButton.addEventListener("click", ()=>{
-clearGrid();
-setDefaultGrid()
-}) ;
+resetButton.addEventListener("click", eraseAllColor);
 
 function setDefaultGrid() {
   setGridSize(32);
@@ -55,4 +52,9 @@ function clearGrid() {
   gridArray.forEach((element) => {
     gridContainer.removeChild(element);
   });
+}
+
+function eraseAllColor() {
+  var gridPixels = document.querySelectorAll('div');
+  gridPixels.forEach(gridPixel => gridPixel.style.backgroundColor = '#ededed');
 }
