@@ -1,12 +1,17 @@
 const gridContainer = document.querySelector("#grid-container");
 const resetButton = document.querySelector("#reset-button");
+const changeButton = document.querySelector("#change-button");
 
 window.addEventListener("load", setDefaultGrid);
-resetButton.addEventListener("click", changeSize);
+changeButton.addEventListener("click", changeSize);
+resetButton.addEventListener("click", ()=>{
+clearGrid();
+setDefaultGrid()
+}) ;
 
 function setDefaultGrid() {
-  setGridSize(16);
-  fillGrid(16);
+  setGridSize(32);
+  fillGrid(32);
 }
 
 function setGridSize(size) {
